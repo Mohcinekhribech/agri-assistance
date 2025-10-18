@@ -1,0 +1,164 @@
+<!-- Hero Section -->
+<section class="bg-gradient-to-br from-primary-600 to-primary-800 py-20">
+  <div class="container mx-auto px-6 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Nos Variétés</h1>
+    <p class="text-xl text-white/90 max-w-2xl mx-auto">
+      Découvrez notre gamme complète de semences F1 de haute qualité
+    </p>
+  </div>
+</section>
+
+<!-- Filters Section -->
+<section class="py-12 bg-gray-50">
+  <div class="container mx-auto px-6">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+      <h3 class="text-xl font-semibold text-gray-900 mb-6">Filtrer les Variétés</h3>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Recherche -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Rechercher</label>
+          <input 
+            type="text" 
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200"
+            placeholder="Nom de la variété, type de culture..."
+            [(ngModel)]="filters.searchTerm"
+            (input)="onSearchChange()"
+          >
+        </div>
+
+        <!-- Type de Culture -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Type de Culture</label>
+          <select 
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200"
+            [(ngModel)]="filters.type"
+            (change)="onFilterChange()"
+          >
+            <option value="">Tous les types</option>
+            <option *ngFor="let type of types" [value]="type">
+              {{ type }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Bouton Reset -->
+        <div class="flex items-end">
+          <button class="w-full px-4 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                  (click)="clearFilters()">
+            Effacer les filtres
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Varieties Grid -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-4">Nos Variétés de Semences</h2>
+      <p class="text-lg text-gray-600">{{ filteredVarietes.length }} variété(s) trouvée(s)</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" *ngIf="filteredVarietes.length > 0">
+      <div 
+        *ngFor="let variete of filteredVarietes" 
+        class="card p-6 cursor-pointer group"
+        (click)="selectVariete(variete)"
+      >
+        <div class="w-full h-48 bg-gradient-to-br from-primary-100 to-primary-200 rounded-lg mb-6 flex items-center justify-center">
+          <span class="text-6xl">🌱</span>
+        </div>
+        
+        <div class="space-y-4">
+          <div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ variete.nom }}</h3>
+            <p class="text-primary-600 font-medium">{{ variete.type }}</p>
+          </div>
+          
+          <p class="text-gray-600 leading-relaxed">{{ variete.description }}</p>
+
+          <div class="pt-4 border-t border-gray-100">
+            <button class="w-full btn-primary">
+              En savoir plus
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="filteredVarietes.length === 0" class="text-center py-16">
+      <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+        <span class="text-2xl">🔍</span>
+      </div>
+      <h3 class="text-xl font-semibold text-gray-900 mb-2">Aucune variété trouvée</h3>
+      <p class="text-gray-600 mb-6">Essayez de modifier vos critères de recherche</p>
+      <button class="btn-primary" (click)="clearFilters()">
+        Effacer les filtres
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Product Modal -->
+<div *ngIf="selectedVariete" 
+     class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
+     (click)="closeModal()">
+  <div class="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+       (click)="$event.stopPropagation()">
+    <div class="p-6 border-b border-gray-200">
+      <div class="flex justify-between items-start">
+        <h2 class="text-2xl font-bold text-gray-900">{{ selectedVariete.nom }}</h2>
+        <button class="text-gray-400 hover:text-gray-600 transition-colors duration-200"
+                (click)="closeModal()">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <div class="p-6 space-y-6">
+      <div>
+        <h4 class="text-lg font-semibold text-gray-900 mb-3">Informations Générales</h4>
+        <div class="space-y-2">
+          <p><span class="font-medium text-gray-700">Type de Culture:</span> {{ selectedVariete.type }}</p>
+          <p><span class="font-medium text-gray-700">Description:</span> {{ selectedVariete.description }}</p>
+        </div>
+      </div>
+
+      <div *ngIf="selectedVariete.caracteristiques.length > 0">
+        <h4 class="text-lg font-semibold text-gray-900 mb-3">Caractéristiques</h4>
+        <ul class="space-y-1">
+          <li *ngFor="let caracteristique of selectedVariete.caracteristiques" 
+              class="flex items-center space-x-2">
+            <span class="w-2 h-2 bg-primary-500 rounded-full"></span>
+            <span class="text-gray-700">{{ caracteristique }}</span>
+          </li>
+        </ul>
+      </div>
+
+      <div *ngIf="selectedVariete.resistances.length > 0">
+        <h4 class="text-lg font-semibold text-gray-900 mb-3">Résistances</h4>
+        <div class="flex flex-wrap gap-2">
+          <span *ngFor="let resistance of selectedVariete.resistances" 
+                class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">
+            {{ resistance }}
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="p-6 border-t border-gray-200 flex justify-end space-x-4">
+      <button class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+              (click)="closeModal()">
+        Fermer
+      </button>
+      <a routerLink="/contact" class="btn-primary">
+        Demander un devis
+      </a>
+    </div>
+  </div>
+</div>

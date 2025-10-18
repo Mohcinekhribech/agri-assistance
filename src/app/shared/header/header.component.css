@@ -1,0 +1,68 @@
+/* Custom styles for header component */
+
+/* Header transparent styles */
+nav {
+  transition: all 0.3s ease;
+}
+
+/* Force transparent background - multiple selectors for maximum coverage */
+nav.bg-transparent,
+nav[style*="background-color: transparent"],
+nav[style*="background-color:transparent"] {
+  background-color: transparent !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  border-bottom: none !important;
+}
+
+/* Override any Tailwind or other CSS that might interfere */
+nav.text-white {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* Ensure text is white when transparent - multiple selectors */
+nav.bg-transparent .text-white,
+nav[style*="background-color: transparent"] .text-white,
+nav[style*="background-color:transparent"] .text-white,
+nav.text-white .text-white {
+  color: white !important;
+}
+
+nav.bg-transparent .text-gray-700,
+nav[style*="background-color: transparent"] .text-gray-700,
+nav[style*="background-color:transparent"] .text-gray-700,
+nav.text-white .text-gray-700 {
+  color: white !important;
+}
+
+nav.bg-transparent .text-gray-900,
+nav[style*="background-color: transparent"] .text-gray-900,
+nav[style*="background-color:transparent"] .text-gray-900,
+nav.text-white .text-gray-900 {
+  color: white !important;
+}
+
+/* Hover states for transparent header */
+nav.bg-transparent a:hover,
+nav[style*="background-color: transparent"] a:hover,
+nav[style*="background-color:transparent"] a:hover,
+nav.text-white a:hover {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Mobile menu button for transparent header */
+nav.bg-transparent button,
+nav[style*="background-color: transparent"] button,
+nav[style*="background-color:transparent"] button,
+nav.text-white button {
+  color: white !important;
+}
+
+nav.bg-transparent button:hover,
+nav[style*="background-color: transparent"] button:hover,
+nav[style*="background-color:transparent"] button:hover,
+nav.text-white button:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}

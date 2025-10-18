@@ -1,0 +1,187 @@
+/* Service Cards */
+.service-card {
+  padding: var(--spacing-2xl);
+  transition: all 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+}
+
+.service-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 2px solid var(--light-gray);
+}
+
+.service-icon {
+  font-size: 3rem;
+  flex-shrink: 0;
+}
+
+.service-title {
+  color: var(--primary-green);
+  margin: 0;
+  font-size: var(--font-size-2xl);
+}
+
+.service-content {
+  margin-bottom: var(--spacing-xl);
+}
+
+.service-description {
+  font-size: var(--font-size-lg);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-lg);
+}
+
+.service-features h4 {
+  color: var(--primary-green);
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-lg);
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.features-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-secondary);
+}
+
+.feature-icon {
+  color: var(--primary-green);
+  font-weight: bold;
+  font-size: var(--font-size-lg);
+}
+
+.service-actions {
+  text-align: center;
+}
+
+/* Process Steps */
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-2xl);
+}
+
+.step {
+  text-align: center;
+  position: relative;
+}
+
+.step::after {
+  content: '';
+  position: absolute;
+  top: 30px;
+  right: -50%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-green), var(--accent-gold));
+  z-index: 1;
+}
+
+.step:last-child::after {
+  display: none;
+}
+
+.step-number {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--primary-green), var(--primary-green-dark));
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-xl);
+  font-weight: bold;
+  margin: 0 auto var(--spacing-lg);
+  position: relative;
+  z-index: 2;
+}
+
+.step-content h3 {
+  color: var(--primary-green);
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-lg);
+}
+
+.step-content p {
+  color: var(--text-secondary);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+}
+
+/* CTA Actions */
+.cta-actions {
+  display: flex;
+  gap: var(--spacing-lg);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: var(--spacing-xl);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .service-header {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-md);
+  }
+  
+  .service-icon {
+    font-size: 2.5rem;
+  }
+  
+  .process-steps {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+  
+  .step::after {
+    display: none;
+  }
+  
+  .step-number {
+    width: 50px;
+    height: 50px;
+    font-size: var(--font-size-lg);
+  }
+  
+  .cta-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cta-actions .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .service-card {
+    padding: var(--spacing-lg);
+  }
+  
+  .service-title {
+    font-size: var(--font-size-xl);
+  }
+  
+  .service-description {
+    font-size: var(--font-size-base);
+  }
+}

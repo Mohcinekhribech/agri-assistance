@@ -1,0 +1,165 @@
+/* Mission & Vision */
+.mission-vision {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-3xl);
+  margin-bottom: var(--spacing-3xl);
+}
+
+.mission, .vision {
+  padding: var(--spacing-xl);
+  background-color: var(--white);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-md);
+  border-left: 4px solid var(--primary-green);
+}
+
+.mission h2, .vision h2 {
+  color: var(--primary-green);
+  margin-bottom: var(--spacing-lg);
+  font-size: var(--font-size-2xl);
+}
+
+.mission p, .vision p {
+  font-size: var(--font-size-lg);
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* Values */
+.value-card {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  transition: all 0.3s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-4px);
+}
+
+.value-icon {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-lg);
+}
+
+.value-title {
+  color: var(--primary-green);
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-xl);
+}
+
+.value-description {
+  font-size: var(--font-size-lg);
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* Team */
+.team-card {
+  text-align: center;
+  padding: var(--spacing-xl);
+  transition: all 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-4px);
+}
+
+.team-image {
+  margin-bottom: var(--spacing-lg);
+}
+
+.image-placeholder {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, var(--primary-green), var(--primary-green-dark));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  color: var(--white);
+}
+
+.placeholder-icon {
+  font-size: 2.5rem;
+}
+
+.team-name {
+  color: var(--primary-green);
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-xl);
+}
+
+.team-position {
+  color: var(--accent-gold);
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-lg);
+}
+
+.team-description {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: var(--font-size-base);
+}
+
+/* History */
+.history-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.history-content h2 {
+  color: var(--primary-green);
+  margin-bottom: var(--spacing-xl);
+  font-size: var(--font-size-3xl);
+}
+
+.history-text p {
+  font-size: var(--font-size-lg);
+  line-height: 1.7;
+  margin-bottom: var(--spacing-lg);
+  color: var(--text-secondary);
+  text-align: left;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .mission-vision {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+  
+  .mission, .vision {
+    padding: var(--spacing-lg);
+  }
+  
+  .team-card {
+    padding: var(--spacing-lg);
+  }
+  
+  .image-placeholder {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .placeholder-icon {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .value-icon {
+    font-size: 2.5rem;
+  }
+  
+  .team-name {
+    font-size: var(--font-size-lg);
+  }
+  
+  .team-position {
+    font-size: var(--font-size-base);
+  }
+}
