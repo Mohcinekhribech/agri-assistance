@@ -10,42 +10,28 @@ import { filter } from 'rxjs/operators';
 export class HeaderComponent implements OnInit, OnDestroy {
   
   isMenuOpen = false;
-  isTransparent = false;
-  isHomePage = false;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    // Écouter les changements de route
+    // Close mobile menu when route changes
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event: any) => {
-        this.isHomePage = event.url === '/' || event.url === '';
-        this.updateTransparency();
+        this.closeMenu();
       });
-
-    // Vérifier la route initiale
-    this.isHomePage = this.router.url === '/' || this.router.url === '';
-    this.updateTransparency();
   }
 
   ngOnDestroy(): void {
-    // Nettoyage si nécessaire
+    // Cleanup if needed
   }
 
-  @HostListener('window:scroll', ['$event'])
-  onWindowScroll(): void {
-    this.updateTransparency();
-  }
-
-  private updateTransparency(): void {
-    if (this.isHomePage) {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      this.isTransparent = scrollTop <= 100; // Transparent si on est en haut de la page
-      console.log('Home page - Scroll:', scrollTop, 'Transparent:', this.isTransparent);
-    } else {
-      this.isTransparent = false; // Toujours opaque sur les autres pages
-      console.log('Other page - Transparent:', this.isTransparent);
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: Event): void {
+    const target = event.target as HTMLElement;
+    const navbar = target.closest('nav');
+    if (!navbar && this.isMenuOpen) {
+      this.closeMenu();
     }
   }
 

@@ -13,6 +13,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { WhatsappButtonComponent } from './shared/whatsapp-button/whatsapp-button.component';
+import { LayoutComponent } from './shared/layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { WhatsappButtonComponent } from './shared/whatsapp-button/whatsapp-butto
     ContactComponent,
     HeaderComponent,
     FooterComponent,
-    WhatsappButtonComponent
+    WhatsappButtonComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,

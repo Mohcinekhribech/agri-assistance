@@ -1,68 +1,63 @@
-/* Custom styles for header component */
+/* Header Component Styles */
 
-/* Header transparent styles */
+/* Base navbar styles */
 nav {
   transition: all 0.3s ease;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: white;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #f3f4f6;
 }
 
-/* Force transparent background - multiple selectors for maximum coverage */
-nav.bg-transparent,
-nav[style*="background-color: transparent"],
-nav[style*="background-color:transparent"] {
-  background-color: transparent !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  border: none !important;
-  border-bottom: none !important;
+/* Mobile menu styles */
+.md\\:hidden {
+  transition: all 0.3s ease-in-out;
 }
 
-/* Override any Tailwind or other CSS that might interfere */
-nav.text-white {
-  background-color: transparent !important;
-  background: transparent !important;
+/* Active link styles */
+.router-link-active {
+  color: #2563eb !important;
+  font-weight: 600;
 }
 
-/* Ensure text is white when transparent - multiple selectors */
-nav.bg-transparent .text-white,
-nav[style*="background-color: transparent"] .text-white,
-nav[style*="background-color:transparent"] .text-white,
-nav.text-white .text-white {
-  color: white !important;
+/* Mobile menu button */
+button {
+  transition: all 0.2s ease;
 }
 
-nav.bg-transparent .text-gray-700,
-nav[style*="background-color: transparent"] .text-gray-700,
-nav[style*="background-color:transparent"] .text-gray-700,
-nav.text-white .text-gray-700 {
-  color: white !important;
+button:hover {
+  background-color: #f3f4f6;
 }
 
-nav.bg-transparent .text-gray-900,
-nav[style*="background-color: transparent"] .text-gray-900,
-nav[style*="background-color:transparent"] .text-gray-900,
-nav.text-white .text-gray-900 {
-  color: white !important;
+/* Ensure proper container spacing */
+.container {
+  max-width: 1200px;
 }
 
-/* Hover states for transparent header */
-nav.bg-transparent a:hover,
-nav[style*="background-color: transparent"] a:hover,
-nav[style*="background-color:transparent"] a:hover,
-nav.text-white a:hover {
-  color: rgba(255, 255, 255, 0.8) !important;
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
-/* Mobile menu button for transparent header */
-nav.bg-transparent button,
-nav[style*="background-color: transparent"] button,
-nav[style*="background-color:transparent"] button,
-nav.text-white button {
-  color: white !important;
+/* Ensure proper spacing */
+nav .flex {
+  min-height: 4rem;
 }
 
-nav.bg-transparent button:hover,
-nav[style*="background-color: transparent"] button:hover,
-nav[style*="background-color:transparent"] button:hover,
-nav.text-white button:hover {
-  background-color: rgba(255, 255, 255, 0.1) !important;
+/* Performance optimizations */
+nav {
+  will-change: background-color, box-shadow, border;
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  nav,
+  nav * {
+    transition: none !important;
+  }
 }

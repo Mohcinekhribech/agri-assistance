@@ -1,118 +1,107 @@
-<nav class="sticky top-0 z-50 transition-all duration-300" 
-     [ngClass]="{
-       'bg-white shadow-sm border-b border-gray-100 text-gray-900': !isTransparent,
-       'text-white': isTransparent
-     }"
-     [style.background-color]="isTransparent ? 'transparent' : 'white'"
-     [style.box-shadow]="isTransparent ? 'none' : '0 1px 3px 0 rgba(0, 0, 0, 0.1)'"
-     [style.border-bottom]="isTransparent ? 'none' : '1px solid #f3f4f6'">
-  <div class="container mx-auto px-6">
-    <div class="flex justify-between items-center h-16">
-      <!-- Logo -->
-      <a routerLink="/" class="flex items-center space-x-3" (click)="closeMenu()">
-        <div class="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center">
-          <span class="text-white font-bold text-lg">A</span>
-        </div>
-        <span class="text-xl font-bold" [ngClass]="{'text-gray-900': !isTransparent, 'text-white': isTransparent}">Agri Assistance</span>
-      </a>
-      
-      <!-- Desktop Navigation -->
-      <div class="hidden md:flex items-center space-x-8">
-        <a routerLink="/" 
-           routerLinkActive="text-primary-600" 
-           [routerLinkActiveOptions]="{exact: true}" 
-           class="font-medium transition-colors duration-200"
-           [ngClass]="{'text-gray-700 hover:text-primary-600': !isTransparent, 'text-white hover:text-gray-200': isTransparent}">
-          Accueil
+<nav class="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50 transition-all duration-300">
+    <div class="container mx-auto px-6">
+      <div class="flex justify-between items-center h-16">
+        <!-- Logo -->
+        <a routerLink="/" class="flex items-center space-x-3 group" (click)="closeMenu()">
+          <div class="relative">
+            <img src="assets/logo/logo.jpg" alt="Agri Assistance Logo" class="w-16 h-16 object-contain rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-primary-600/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="absolute inset-0 border-2 border-primary-200 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
+          <div class="flex flex-col justify-center">
+            <span class="text-xl font-bold text-gray-900 group-hover:text-primary-600 transition-colors duration-300 leading-tight">Agri Assistance</span>
+            <span class="text-sm text-gray-500 group-hover:text-primary-500 transition-colors duration-300 leading-tight">Excellence Agricole</span>
+          </div>
         </a>
-        <a routerLink="/a-propos" 
-           routerLinkActive="text-primary-600" 
-           class="font-medium transition-colors duration-200"
-           [ngClass]="{'text-gray-700 hover:text-primary-600': !isTransparent, 'text-white hover:text-gray-200': isTransparent}">
-          À propos
-        </a>
-        <a routerLink="/services" 
-           routerLinkActive="text-primary-600" 
-           class="font-medium transition-colors duration-200"
-           [ngClass]="{'text-gray-700 hover:text-primary-600': !isTransparent, 'text-white hover:text-gray-200': isTransparent}">
-          Services
-        </a>
-        <a routerLink="/varietes" 
-           routerLinkActive="text-primary-600" 
-           class="font-medium transition-colors duration-200"
-           [ngClass]="{'text-gray-700 hover:text-primary-600': !isTransparent, 'text-white hover:text-gray-200': isTransparent}">
-          Variétés
-        </a>
-        <a routerLink="/fertilisants" 
-           routerLinkActive="text-primary-600" 
-           class="font-medium transition-colors duration-200"
-           [ngClass]="{'text-gray-700 hover:text-primary-600': !isTransparent, 'text-white hover:text-gray-200': isTransparent}">
-          Fertilisants
-        </a>
-        <a routerLink="/contact" 
-           routerLinkActive="text-primary-600" 
-           class="font-medium transition-colors duration-200"
-           [ngClass]="{'text-gray-700 hover:text-primary-600': !isTransparent, 'text-white hover:text-gray-200': isTransparent}">
-          Contact
-        </a>
+        
+         <!-- Desktop Navigation -->
+         <div class="hidden md:flex items-center space-x-8">
+           <a routerLink="/" 
+              routerLinkActive="text-primary-600" 
+              [routerLinkActiveOptions]="{exact: true}" 
+              class="font-medium text-gray-700 hover:text-primary-600 transition-colors duration-200">
+             Accueil
+           </a>
+           <a routerLink="/varietes" 
+              routerLinkActive="text-primary-600" 
+              class="font-medium text-gray-700 hover:text-primary-600 transition-colors duration-200">
+             Variétés
+           </a>
+           <a routerLink="/fertilisants" 
+              routerLinkActive="text-primary-600" 
+              class="font-medium text-gray-700 hover:text-primary-600 transition-colors duration-200">
+             Fertilisants
+           </a>
+           <a routerLink="/services" 
+              routerLinkActive="text-primary-600" 
+              class="font-medium text-gray-700 hover:text-primary-600 transition-colors duration-200">
+             Services
+           </a>
+           <a routerLink="/a-propos" 
+              routerLinkActive="text-primary-600" 
+              class="font-medium text-gray-700 hover:text-primary-600 transition-colors duration-200">
+             À propos
+           </a>
+           <a routerLink="/contact" 
+              routerLinkActive="text-primary-600" 
+              class="font-medium text-gray-700 hover:text-primary-600 transition-colors duration-200">
+             Contact
+           </a>
+         </div>
+        
+        <!-- Mobile Menu Button -->
+        <button class="md:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors duration-200" 
+                (click)="toggleMenu()" 
+                [attr.aria-expanded]="isMenuOpen"
+                aria-label="Toggle menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  [attr.d]="isMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'"></path>
+          </svg>
+        </button>
       </div>
       
-      <!-- Mobile Menu Button -->
-      <button class="md:hidden p-2 rounded-lg transition-colors duration-200" 
-              [ngClass]="{
-                'hover:bg-gray-100 text-gray-700': !isTransparent,
-                'hover:bg-white/10 text-white': isTransparent
-              }"
-              (click)="toggleMenu()" 
-              [class.active]="isMenuOpen">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                [attr.d]="isMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'"></path>
-        </svg>
-      </button>
+       <!-- Mobile Navigation -->
+       <div class="md:hidden" [class.hidden]="!isMenuOpen">
+         <div class="py-4 space-y-2 border-t border-gray-100">
+           <a routerLink="/" 
+              routerLinkActive="text-primary-600 bg-primary-50" 
+              [routerLinkActiveOptions]="{exact: true}" 
+              class="block px-4 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors duration-200"
+              (click)="closeMenu()">
+             Accueil
+           </a>
+           <a routerLink="/varietes" 
+              routerLinkActive="text-primary-600 bg-primary-50" 
+              class="block px-4 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors duration-200"
+              (click)="closeMenu()">
+             Variétés
+           </a>
+           <a routerLink="/fertilisants" 
+              routerLinkActive="text-primary-600 bg-primary-50" 
+              class="block px-4 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors duration-200"
+              (click)="closeMenu()">
+             Fertilisants
+           </a>
+           <a routerLink="/services" 
+              routerLinkActive="text-primary-600 bg-primary-50" 
+              class="block px-4 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors duration-200"
+              (click)="closeMenu()">
+             Services
+           </a>
+           <a routerLink="/a-propos" 
+              routerLinkActive="text-primary-600 bg-primary-50" 
+              class="block px-4 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors duration-200"
+              (click)="closeMenu()">
+             À propos
+           </a>
+           <a routerLink="/contact" 
+              routerLinkActive="text-primary-600 bg-primary-50" 
+              class="block px-4 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors duration-200"
+              (click)="closeMenu()">
+             Contact
+           </a>
+         </div>
+       </div>
     </div>
-    
-    <!-- Mobile Navigation -->
-    <div class="md:hidden" [class.hidden]="!isMenuOpen">
-      <div class="py-4 space-y-2 border-t border-gray-100">
-        <a routerLink="/" 
-           routerLinkActive="text-primary-600 bg-primary-50" 
-           [routerLinkActiveOptions]="{exact: true}" 
-           class="block px-4 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors duration-200"
-           (click)="closeMenu()">
-          Accueil
-        </a>
-        <a routerLink="/a-propos" 
-           routerLinkActive="text-primary-600 bg-primary-50" 
-           class="block px-4 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors duration-200"
-           (click)="closeMenu()">
-          À propos
-        </a>
-        <a routerLink="/services" 
-           routerLinkActive="text-primary-600 bg-primary-50" 
-           class="block px-4 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors duration-200"
-           (click)="closeMenu()">
-          Services
-        </a>
-        <a routerLink="/varietes" 
-           routerLinkActive="text-primary-600 bg-primary-50" 
-           class="block px-4 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors duration-200"
-           (click)="closeMenu()">
-          Variétés
-        </a>
-        <a routerLink="/fertilisants" 
-           routerLinkActive="text-primary-600 bg-primary-50" 
-           class="block px-4 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors duration-200"
-           (click)="closeMenu()">
-          Fertilisants
-        </a>
-        <a routerLink="/contact" 
-           routerLinkActive="text-primary-600 bg-primary-50" 
-           class="block px-4 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors duration-200"
-           (click)="closeMenu()">
-          Contact
-        </a>
-      </div>
-    </div>
-  </div>
 </nav>
